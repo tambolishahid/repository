@@ -29,12 +29,6 @@
       "Fuguevit\\Repositories\\Tests\\": "test/"
     }
   },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://packagist.phpcomposer.com"
-    }
-  ],
   "minimum-stability": "dev",
   "prefer-stable": true
 }
