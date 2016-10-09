@@ -2,7 +2,7 @@
 
 namespace Fuguevit\Repositories\Contracts;
 
-interface Repository
+interface RepositoryInterface
 {
     /**
      * Fetch all items

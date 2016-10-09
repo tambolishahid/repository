@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuguevit\Repositories\Creiteria;
+namespace Fuguevit\Repositories\Criteria;
 
 use Fuguevit\Repositories\Contracts\Repository;
 

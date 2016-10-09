@@ -2,7 +2,7 @@
 
 namespace Fuguevit\Repositories\Contracts;
 
-use canon\Repositories\Criteria\Criteria;
+use Fuguevit\Repositories\Criteria\Criteria;
 
 /**
  * Interface CriteriaInterface

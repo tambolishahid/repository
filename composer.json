@@ -19,13 +19,19 @@
     "illuminate/console": "^5.2"
   },
   "require-dev": {
-    "mockery/mockery": "dev-master@dev"
+    "mockery/mockery": "0.9.*"
   },
   "autoload-dev": {
     "psr-4": {
       "Fuguevit\\Repositories\\Tests\\": "test/"
     }
   },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  ],
   "minimum-stability": "dev",
   "prefer-stable": true
 }
