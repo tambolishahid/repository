@@ -1,0 +1,31 @@
+{
+  "name": "fuguevit/repositories",
+  "type": "library",
+  "description": "Repository pattern implementation for Laravel5",
+  "license": "MIT",
+  "homepage": "http://www.fuguevit.com",
+  "keywords": ["repository","laravel"],
+  "authors": [
+    {
+      "name": "Frank Wang",
+      "email": "wangxuan@188.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "illuminate/support": "^5.2",
+    "illuminate/database": "^5.2",
+    "illuminate/filesystem": "^5.2",
+    "illuminate/console": "^5.2"
+  },
+  "require-dev": {
+    "mockery/mockery": "dev-master@dev"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Fuguevit\\Repositories\\Tests\\": "test/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
