@@ -13,16 +13,6 @@ interface RepositoryInterface
     public function all($columns = array('*'));
 
     /**
-     * Fetch all items by value of specified field
-     *
-     * @param $field
-     * @param $value
-     * @param array $columns
-     * @return mixed
-     */
-    public function allBy($field, $value, $columns = array('*'));
-
-    /**
      * Create an item
      *
      * @param array $data
