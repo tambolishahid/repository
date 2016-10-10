@@ -24,9 +24,14 @@
     "mockery/mockery": "0.9.*",
     "phpunit/phpunit": "^4.8"
   },
+  "autoload": {
+    "psr-4": {
+      "Fuguevit\\": "src/Fuguevit/"
+    }
+  },
   "autoload-dev": {
     "psr-4": {
-      "Fuguevit\\Repositories\\Tests\\": "test/"
+      "Fuguevit\\Repositories\\Tests\\": "tests/"
     }
   },
   "extra": {
