@@ -2,6 +2,8 @@
 
 namespace Fuguevit\Repositories\Traits;
 
+use Fuguevit\Repositories\Exceptions\PresenterException;
+
 trait PresenterTrait
 {
     /**
