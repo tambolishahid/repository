@@ -340,13 +340,9 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
                         : $model->orWhere($field, '=', $search);
                 }
             } else {
-                //                if(array_search($field, array_keys($where))==0) {
-//                    $model = $model->where($field, '=', $value);
-//                } else {
-                    $model = (!$or)
-                        ? $model->where($field, '=', $value)
-                        : $model->orWhere($field, '=', $value);
-//                }
+                $model = (!$or)
+                    ? $model->where($field, '=', $value)
+                    : $model->orWhere($field, '=', $value);
             }
         }
 
