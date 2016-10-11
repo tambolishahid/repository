@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuguevit\Repositories;
+namespace Fuguevit\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
