@@ -2,6 +2,11 @@
 
 namespace Fuguevit\Repositories\Contracts;
 
+/**
+ * Interface RepositoryInterface
+ *
+ * @package Fuguevit\Repositories\Contracts
+ */
 interface RepositoryInterface
 {
     /**
@@ -51,6 +56,26 @@ interface RepositoryInterface
      * @return mixed
      */
     public function findBy($field, $value, $columns = ['*']);
+
+    /**
+     * Find data by multiple fields in one field.
+     *
+     * @param $field
+     * @param array $values
+     * @param array $columns
+     * @return mixed
+     */
+    public function findIn($field, array $values, $columns = ['*']);
+
+    /**
+     * Find data exclude multiple fields in on field.
+     *
+     * @param $field
+     * @param array $values
+     * @param array $columns
+     * @return mixed
+     */
+    public function findNotIn($field, array $values, $columns = ['*']);
 
     /**
      * Fetch items by where clause.

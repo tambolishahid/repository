@@ -44,15 +44,30 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
         return $this->setModel($this->model());
     }
 
+    /**
+     * Set model.
+     *
+     * @param $eloquentModel
+     * @return Model
+     * @throws RepositoryException
+     */
     public function setModel($eloquentModel)
     {
         $this->newModel = $this->app->make($eloquentModel);
 
         if (!$this->newModel instanceof Model) {
-            throw  new RepositoryException("Class {$this->newModel} must be an instance of Illuminate\\Database\\Eloquent\\Model");
+            throw new RepositoryException("Class {$this->newModel} must be an instance of Illuminate\\Database\\Eloquent\\Model");
         }
 
         return $this->model = $this->newModel;
+    }
+
+    /**
+     * @throws RepositoryException
+     */
+    public function resetModel()
+    {
+        $this->makeModel();
     }
 
     public function resetScope()
@@ -273,6 +288,36 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
         return $this->model->where($attribute, '=', $value)->first($columns);
     }
 
+    /**
+     * @param $field
+     * @param array $values
+     * @param array $columns
+     * @return mixed
+     */
+    public function findIn($field, array $values, $columns = ['*'])
+    {
+        $this->applyCriteria();
+        $result = $this->model->whereIn($field, $values)->get($columns);
+        $this->resetModel();
+
+        return $result;
+    }
+
+    /**
+     * @param $field
+     * @param array $values
+     * @param array $columns
+     * @return mixed
+     */
+    public function findNotIn($field, array $values, $columns = ['*'])
+    {
+        $this->applyCriteria();
+        $result =  $this->model->whereNotIn($field, $values)->get($columns);
+        $this->resetModel();
+
+        return $result;
+    }
+    
     /**
      * @param $attribute
      * @param $value
