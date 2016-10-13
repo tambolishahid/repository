@@ -113,4 +113,11 @@ interface RepositoryInterface
      * @return mixed
      */
     public function update(array $data, $id);
+
+    /**
+     * @param $field
+     * @param string $direction
+     * @return mixed
+     */
+    public function orderBy($field, $direction = 'asc');
 }
