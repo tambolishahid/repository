@@ -145,18 +145,6 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param array $columns
-     *
-     * @return mixed
-     */
-    public function all($columns = ['*'])
-    {
-        $this->applyCriteria();
-
-        return $this->model->get($columns);
-    }
-
-    /**
      * @param array $relations
      *
      * @return $this
@@ -166,6 +154,44 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
         $this->model = $this->model->with($relations);
 
         return $this;
+    }
+
+    /**
+     * @param $relation
+     * @param $closure
+     * @return $this
+     */
+    public function whereHas($relation, $closure)
+    {
+        $this->model = $this->model->whereHas($relation, $closure);
+
+        return $this;
+    }
+
+    /**
+     * @param $field
+     * @param string $direction
+     * @return $this
+     */
+    public function orderBy($field, $direction = 'asc')
+    {
+        $this->applyCriteria();
+        $model = $this->model;
+        $this->model = $model->orderBy($field, $direction);
+
+        return $this;
+    }
+
+    /**
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function all($columns = ['*'])
+    {
+        $this->applyCriteria();
+
+        return $this->model->get($columns);
     }
 
     /**
@@ -392,20 +418,6 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
         }
 
         return $model->get($columns);
-    }
-
-    /**
-     * @param $field
-     * @param string $direction
-     * @return $this
-     */
-    public function orderBy($field, $direction = 'asc')
-    {
-        $this->applyCriteria();
-        $model = $this->model;
-        $this->model = $model->orderBy($field, $direction);
-
-        return $this;
     }
 
     /**
