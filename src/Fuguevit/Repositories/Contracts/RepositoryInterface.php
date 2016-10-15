@@ -10,7 +10,7 @@ namespace Fuguevit\Repositories\Contracts;
 interface RepositoryInterface
 {
     /**
-     * Fetch all items.
+     * Retrieve all data.
      *
      * @param array $columns
      *
@@ -19,13 +19,13 @@ interface RepositoryInterface
     public function all($columns = ['*']);
 
     /**
-     * Create an item.
+     * Save a new entity in repository.
      *
-     * @param array $data
+     * @param array $attributes
      *
      * @return mixed
      */
-    public function create(array $data);
+    public function create(array $attributes);
 
     /**
      * Delete an item.

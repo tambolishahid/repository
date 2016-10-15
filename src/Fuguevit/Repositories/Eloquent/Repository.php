@@ -225,13 +225,13 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param array $data
+     * @param array $attributes
      *
      * @return mixed
      */
-    public function create(array $data)
+    public function create(array $attributes)
     {
-        return $this->model->create($data);
+        return $this->model->create($attributes);
     }
 
     /**
@@ -353,9 +353,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
      */
     public function findAllBy($attribute, $value, $columns = ['*'])
     {
-        $this->applyCriteria();
-
-        return $this->model->where($attribute, '=', $value)->get($columns);
+        return $this->findWhere([$attribute, $value], $columns);
     }
 
     /**
@@ -367,11 +365,16 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
      */
     public function findAllExcept($attribute, $value, $columns = ['*'])
     {
-        $this->applyCriteria();
-
-        return $this->model->where($attribute, '!=', $value)->get($columns);
+        return $this->findWhere([$attribute, '!=', $value], $columns);
     }
 
+    /**
+     * @param $where
+     * @param array $columns
+     * @param bool $or
+     *
+     * @return mixed
+     */
     public function findWhere($where, $columns = ['*'], $or = false)
     {
         $this->applyCriteria();
