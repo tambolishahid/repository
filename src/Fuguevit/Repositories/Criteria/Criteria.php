@@ -2,7 +2,7 @@
 
 namespace Fuguevit\Repositories\Criteria;
 
-use Fuguevit\Repositories\Contracts\Repository;
+use Fuguevit\Repositories\Contracts\RepositoryInterface as Repository;
 
 abstract class Criteria
 {
