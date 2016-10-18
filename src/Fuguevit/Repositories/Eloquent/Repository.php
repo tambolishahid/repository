@@ -390,7 +390,6 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
      */
     public function orderBy($field, $direction = 'asc')
     {
-        $this->applyCriteria();
         $this->model = $this->model->orderBy($field, $direction);
 
         return $this;
