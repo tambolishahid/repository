@@ -10,13 +10,15 @@ use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
+/**
+ * Class Repository
+ * @package Fuguevit\Repositories\Eloquent
+ */
 abstract class Repository implements CriteriaInterface, RepositoryInterface
 {
     private $app;
 
     protected $model;
-
-    protected $newModel;
 
     protected $criteria;
 
@@ -39,29 +41,17 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
      */
     abstract public function model();
 
+    /**
+     * @return Model
+     * @throws RepositoryException
+     */
     public function makeModel()
     {
-        return $this->setModel($this->model());
-    }
-
-    /**
-     * Set model.
-     *
-     * @param $eloquentModel
-     *
-     * @throws RepositoryException
-     *
-     * @return Model
-     */
-    public function setModel($eloquentModel)
-    {
-        $this->newModel = $this->app->make($eloquentModel);
-
-        if (!$this->newModel instanceof Model) {
-            throw new RepositoryException("Class {$this->newModel} must be an instance of Illuminate\\Database\\Eloquent\\Model");
+        $model = $this->app->make($this->model());
+        if (!$model instanceof Model) {
+            throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
         }
-
-        return $this->model = $this->newModel;
+        return $this->model = $model;
     }
 
     /**
