@@ -12,7 +12,6 @@ use Illuminate\Support\Collection;
 
 /**
  * Class Repository
- * @package Fuguevit\Repositories\Eloquent
  */
 abstract class Repository implements CriteriaInterface, RepositoryInterface
 {
@@ -42,8 +41,9 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     abstract public function model();
 
     /**
-     * @return Model
      * @throws RepositoryException
+     *
+     * @return Model
      */
     public function makeModel()
     {
