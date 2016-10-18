@@ -131,6 +131,6 @@ interface RepositoryInterface
      * @param $relations
      * @return mixed
      */
-    public function with($relations);
+    public function with(array $relations);
 
 }
