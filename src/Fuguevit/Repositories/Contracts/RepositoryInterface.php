@@ -10,7 +10,7 @@ namespace Fuguevit\Repositories\Contracts;
 interface RepositoryInterface
 {
     /**
-     * Retrieve all data.
+     * Retrieve all items.
      *
      * @param array $columns
      *
@@ -26,6 +26,25 @@ interface RepositoryInterface
      * @return mixed
      */
     public function create(array $attributes);
+
+    /**
+     * Save a new entity without massive assignment.
+     *
+     * @param array $data
+     *
+     * @return bool
+     */
+    public function save(array $data);
+
+    /**
+     * Update an item.
+     *
+     * @param array $attributes
+     * @param $id
+     *
+     * @return mixed
+     */
+    public function update(array $attributes, $id);
 
     /**
      * Delete an item.
@@ -98,26 +117,20 @@ interface RepositoryInterface
     public function paginate($perPage = 1, $columns = ['*']);
 
     /**
-     * @param array $data
+     * Order collection by a given column.
      *
-     * @return bool
-     */
-    public function saveModel(array $data);
-
-    /**
-     * Update item.
-     *
-     * @param array $data
-     * @param $id
-     *
-     * @return mixed
-     */
-    public function update(array $data, $id);
-
-    /**
      * @param $field
      * @param string $direction
      * @return mixed
      */
     public function orderBy($field, $direction = 'asc');
+
+    /**
+     * Load relations
+     *
+     * @param $relations
+     * @return mixed
+     */
+    public function with($relations);
+
 }

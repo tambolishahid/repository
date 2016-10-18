@@ -235,13 +235,13 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * save a model without massive assignment.
+     * Save a model without massive assignment.
      *
      * @param array $data
      *
      * @return bool
      */
-    public function saveModel(array $data)
+    public function save(array $data)
     {
         foreach ($data as $k => $v) {
             $this->model->$k = $v;
