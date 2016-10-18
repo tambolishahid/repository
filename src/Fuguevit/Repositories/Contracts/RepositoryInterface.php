@@ -8,13 +8,23 @@ namespace Fuguevit\Repositories\Contracts;
 interface RepositoryInterface
 {
     /**
-     * Retrieve all items.
+     * Retrieve all entities.
      *
      * @param array $columns
      *
      * @return mixed
      */
     public function all($columns = ['*']);
+
+    /**
+     * List entities by key/value.
+     *
+     * @param $value
+     * @param null $key
+     *
+     * @return mixed
+     */
+    public function lists($value, $key = null);
 
     /**
      * Save a new entity in repository.
@@ -28,11 +38,11 @@ interface RepositoryInterface
     /**
      * Save a new entity without massive assignment.
      *
-     * @param array $data
+     * @param array $attributes
      *
      * @return bool
      */
-    public function save(array $data);
+    public function save(array $attributes);
 
     /**
      * Update an item.
