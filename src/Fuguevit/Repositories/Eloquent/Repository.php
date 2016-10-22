@@ -383,6 +383,17 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
+     * @param $relation
+     * @param $closure
+     *
+     * @return $this
+     */
+    public function whereDoesntHave($relation, $closure)
+    {
+        $this->model = $this->model->whereDoesntHave($relation, $closure);
+    }
+
+    /**
      * @param $field
      * @param string $direction
      *
