@@ -9,7 +9,7 @@ return [
     |
     | Repository Cache Enabled or not.
     |
-     */
+    */
     'cache_enabled'   => env('REPOSITORY_CACHE', true),
 
     /*
@@ -19,7 +19,7 @@ return [
     |
     | The TTL value of Repository Cache.
     |
-     */
+    */
     'cache_ttl'       => env('REPOSITORY_CACHE_TTL', 30),
 
     /*
@@ -29,7 +29,7 @@ return [
     |
     | Repository Cache Tags Enabled or not.
     |
-     */
+    */
     'cache_use_tags'  => env('REPOSITORY_CACHE_TAGS', true),
 
 ];
