@@ -62,6 +62,11 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
         $this->makeModel();
     }
 
+    /**
+     * @param bool $status
+     *
+     * @return $this
+     */
     public function skipCriteria($status = true)
     {
         $this->skipCriteria = $status;
@@ -130,9 +135,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param array $columns
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function all($columns = ['*'])
     {
@@ -145,10 +148,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param string $value
-     * @param string $key
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function lists($value, $key = null)
     {
@@ -159,9 +159,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param array $attributes
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function create(array $attributes)
     {
@@ -169,9 +167,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param array $data
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function save(array $data)
     {
@@ -183,11 +179,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param array $data
-     * @param $id
-     * @param string $attribute
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function update(array $data, $id, $attribute = 'id')
     {
@@ -201,9 +193,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param $id
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function delete($id)
     {
@@ -211,10 +201,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param $id
-     * @param array $columns
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function find($id, $columns = ['*'])
     {
@@ -227,28 +214,36 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param $attribute
-     * @param $value
-     * @param array $columns
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
-    public function findBy($attribute, $value, $columns = ['*'])
+    public function findBy($field, $value, $columns = ['*'])
     {
         $this->applyCriteria();
 
-        $model = $this->model->where($attribute, '=', $value)->first($columns);
+        $model = $this->model->where($field, '=', $value)->first($columns);
         $this->resetModel();
 
         return $model;
     }
 
     /**
-     * @param $field
-     * @param array $values
-     * @param array $columns
-     *
-     * @return mixed
+     * {@inheritdoc}
+     */
+    public function findAllBy($field, $value, $columns = ['*'])
+    {
+        return $this->findWhere([$field => $value], $columns);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findAllExcept($field, $value, $columns = ['*'])
+    {
+        return $this->findWhere([$field => [$field, '!=', $value]], $columns);
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function findIn($field, array $values, $columns = ['*'])
     {
@@ -260,11 +255,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param $field
-     * @param array $values
-     * @param array $columns
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function findNotIn($field, array $values, $columns = ['*'])
     {
@@ -276,11 +267,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param $where
-     * @param array $columns
-     * @param bool  $or
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function findWhere($where, $columns = ['*'], $or = false)
     {
@@ -334,70 +321,19 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param $attribute
-     * @param $value
-     * @param array $columns
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
-    public function findAllBy($attribute, $value, $columns = ['*'])
+    public function paginate($perPage = 25, $columns = ['*'])
     {
-        return $this->findWhere([$attribute => $value], $columns);
+        $this->applyCriteria();
+        $collection = $this->model->paginate($perPage, $columns);
+        $this->resetModel();
+
+        return $collection;
     }
 
     /**
-     * @param $attribute
-     * @param $value
-     * @param array $columns
-     *
-     * @return mixed
-     */
-    public function findAllExcept($attribute, $value, $columns = ['*'])
-    {
-        return $this->findWhere([$attribute => [$attribute, '!=', $value]], $columns);
-    }
-
-    /**
-     * @param array $relations
-     *
-     * @return $this
-     */
-    public function with(array $relations)
-    {
-        $this->model = $this->model->with($relations);
-
-        return $this;
-    }
-
-    /**
-     * @param $relation
-     * @param $closure
-     *
-     * @return $this
-     */
-    public function whereHas($relation, $closure)
-    {
-        $this->model = $this->model->whereHas($relation, $closure);
-
-        return $this;
-    }
-
-    /**
-     * @param $relation
-     * @param $closure
-     *
-     * @return $this
-     */
-    public function whereDoesntHave($relation, $closure)
-    {
-        $this->model = $this->model->whereDoesntHave($relation, $closure);
-    }
-
-    /**
-     * @param $field
-     * @param string $direction
-     *
-     * @return $this
+     * {@inheritdoc}
      */
     public function orderBy($field, $direction = 'asc')
     {
@@ -407,18 +343,43 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
-     * @param int   $perPage
-     * @param array $columns
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
-    public function paginate($perPage = 25, $columns = ['*'])
+    public function with(array $relations)
     {
-        $this->applyCriteria();
-        $collection = $this->model->paginate($perPage, $columns);
-        $this->resetModel();
+        $this->model = $this->model->with($relations);
 
-        return $collection;
+        return $this;
+    }
+
+    /**
+     * Load 'whereHas' relation with closure.
+     *
+     * @param $relation
+     * @param $closure
+     *
+     * @return $this
+     */
+    function whereHas($relation, $closure)
+    {
+        $this->model = $this->model->whereHas($relation, $closure);
+
+        return $this;
+    }
+
+    /**
+     * Load 'whereDoesntHave' relation with closure.
+     *
+     * @param $relation
+     * @param $closure
+     *
+     * @return $this
+     */
+    function whereDoesntHave($relation, $closure)
+    {
+        $this->model = $this->model->whereDoesntHave($relation, $closure);
+
+        return $this;
     }
 
     /**
@@ -432,9 +393,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     public function __call($method, $arguments)
     {
         $this->applyCriteria();
-        $result = $this->callMethod($method, $arguments);
-
-        return $result;
+        return $this->callMethod($method, $arguments);
     }
 
     /**
