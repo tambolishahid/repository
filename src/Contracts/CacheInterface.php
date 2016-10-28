@@ -5,16 +5,16 @@ namespace Fuguevit\Repositories\Contracts;
 interface CacheInterface
 {
     /**
-     * @param $minutes
+     * Set ttl.
      *
-     * @return mixed
+     * @param $minutes
      */
     public function setTtl($minutes);
 
     /**
-     * @param $bool
+     * Set cacheable or not.
      *
-     * @return mixed
+     * @param $bool
      */
     public function setEnabled($bool);
 }

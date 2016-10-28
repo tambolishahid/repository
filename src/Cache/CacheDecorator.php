@@ -10,15 +10,74 @@ use Illuminate\Support\Facades\Cache;
 
 abstract class CacheDecorator implements CacheInterface
 {
+    /**
+     * repository
+     *
+     * @var string
+     */
     public $repository;
+
+    /**
+     * ttl
+     *
+     * @var integer
+     */
     protected $ttl;
+
+    /**
+     * prefix key
+     *
+     * @var string
+     */
     protected $prefix_key;
+
+    /**
+     * enable caching
+     *
+     * @var bool
+     */
     protected $enabled = true;
+
+    /**
+     * functions that exclude of caching
+     *
+     * @var bool
+     */
     protected $excludes = false;
+
+    /**
+     * array of tag cleaners
+     *
+     * @var array
+     */
     protected $tag_cleaners = [];
+
+    /**
+     * enable cache tag
+     *
+     * @var bool
+     */
     protected $tags = false;
+
+    /**
+     * debug mode
+     *
+     * @var bool
+     */
     protected $debug = false;
+
+    /**
+     * container
+     *
+     * @var App
+     */
     protected $app;
+
+    /**
+     * collection
+     *
+     * @var Collection
+     */
     protected $collection;
 
     /**
@@ -39,29 +98,41 @@ abstract class CacheDecorator implements CacheInterface
     {
         $this->app = $app;
         $this->collection = $collection;
+
         $this->initExcludes();
         $this->initRepository($repository);
         $this->getConfig();
     }
 
+    /**
+     * Init Exclude Functions Array.
+     */
     protected function initExcludes()
     {
-        $defaults = ['repository', 'setTtl', 'setEnabled', 'getConfig', 'initRepository',
-            'doesMethodClearTag', 'clearCacheTag', 'getCache', 'putCache',
-            'isMethodCacheable', 'generateCacheKey', 'log', ];
+        $defaults = ['repository', 'setTtl', 'setEnabled', 'getConfig', 'initRepository', 'doesMethodClearTag',
+            'clearCacheTag', 'getCache', 'putCache', 'isMethodCacheable', 'generateCacheKey', 'log'];
         $this->excludes = array_merge($defaults, $this->excludes);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setTtl($minutes)
     {
         $this->ttl = $minutes;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setEnabled($bool)
     {
         $this->enabled = $bool;
     }
 
+    /**
+     * Get configurations.
+     */
     protected function getConfig()
     {
         $this->ttl = Config::get('repository_cache.ttl');
@@ -73,6 +144,11 @@ abstract class CacheDecorator implements CacheInterface
         $this->debug = Config::get('app.debug');
     }
 
+    /**
+     * Init repository.
+     *
+     * @param $repository
+     */
     public function initRepository($repository)
     {
         if (!$repository) {
@@ -82,6 +158,11 @@ abstract class CacheDecorator implements CacheInterface
         $this->repository = $repository;
     }
 
+    /**
+     * @param $method
+     * @param $arguments
+     * @return bool
+     */
     public function __call($method, $arguments)
     {
         if ($this->isMethodCacheable($method)) {
@@ -101,6 +182,10 @@ abstract class CacheDecorator implements CacheInterface
         return $res;
     }
 
+    /**
+     * @param $method
+     * @return bool
+     */
     protected function doesMethodClearTag($method)
     {
         if ($this->tag_cleaners &&
@@ -109,6 +194,9 @@ abstract class CacheDecorator implements CacheInterface
         }
     }
 
+    /**
+     * @return mixed
+     */
     protected function clearCacheTag()
     {
         if ($this->tags) {
@@ -116,6 +204,10 @@ abstract class CacheDecorator implements CacheInterface
         }
     }
 
+    /**
+     * @param $key
+     * @return bool
+     */
     protected function getCache($key)
     {
         if ($this->ttl === false) {
@@ -129,6 +221,11 @@ abstract class CacheDecorator implements CacheInterface
         return Cache::get($key);
     }
 
+    /**
+     * @param $key
+     * @param $res
+     * @return bool
+     */
     protected function putCache($key, $res)
     {
         if ($this->ttl === false) { // don't save if ttl is false
@@ -141,6 +238,11 @@ abstract class CacheDecorator implements CacheInterface
         return Cache::put($key, $res, $this->ttl);
     }
 
+    /**
+     * @param $method
+     * @param $arguments
+     * @return mixed
+     */
     protected function callMethod($method, $arguments)
     {
         if (method_exists($this->repository, $method)) {
@@ -149,6 +251,10 @@ abstract class CacheDecorator implements CacheInterface
         throw new BadMethodCallException("Method '{$method}' does not exist in the repository");
     }
 
+    /**
+     * @param $method
+     * @return bool
+     */
     protected function isMethodCacheable($method)
     {
         if ($this->excludes && in_array($method, $this->excludes)) {
@@ -158,6 +264,11 @@ abstract class CacheDecorator implements CacheInterface
         return true;
     }
 
+    /**
+     * @param $method
+     * @param $arguments
+     * @return string
+     */
     protected function generateCacheKey($method, $arguments)
     {
         $temp_params = array_dot($arguments);
