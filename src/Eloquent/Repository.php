@@ -10,9 +10,6 @@ use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
-/**
- * Class Repository.
- */
 abstract class Repository implements CriteriaInterface, RepositoryInterface
 {
     private $app;
