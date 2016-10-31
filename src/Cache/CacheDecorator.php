@@ -207,6 +207,8 @@ abstract class CacheDecorator implements CacheInterface
     }
 
     /**
+     * Return cached content.
+     *
      * @param $key
      *
      * @return bool
@@ -225,6 +227,8 @@ abstract class CacheDecorator implements CacheInterface
     }
 
     /**
+     * Caching content.
+     *
      * @param $key
      * @param $res
      *
