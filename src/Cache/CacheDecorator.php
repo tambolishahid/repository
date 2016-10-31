@@ -60,13 +60,6 @@ abstract class CacheDecorator implements CacheInterface
     protected $tags = false;
 
     /**
-     * debug mode.
-     *
-     * @var bool
-     */
-    protected $debug = false;
-
-    /**
      * container.
      *
      * @var App
@@ -124,6 +117,14 @@ abstract class CacheDecorator implements CacheInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
      * Get configurations.
      */
     protected function getConfig()
@@ -134,7 +135,6 @@ abstract class CacheDecorator implements CacheInterface
             $this->tags = false;
             $this->tag_cleaners = false;
         }
-        $this->debug = Config::get('app.debug');
     }
 
     /**
@@ -169,6 +169,7 @@ abstract class CacheDecorator implements CacheInterface
         } else {
             $res = $this->callMethod($method, $arguments);
         }
+
         if ($this->doesMethodClearTag($method)) {
             $this->clearCacheTag();
         }
@@ -232,7 +233,8 @@ abstract class CacheDecorator implements CacheInterface
         if ($this->ttl === false) { // don't save if ttl is false
             return false;
         }
-        if ($this->tags) {
+
+        if (is_array($this->tags) || is_string($this->tags)) {
             return Cache::tags($this->tags)->put($key, $res, $this->ttl);
         }
 

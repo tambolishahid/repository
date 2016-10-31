@@ -17,4 +17,11 @@ interface CacheInterface
      * @param $bool
      */
     public function setEnabled($bool);
+
+    /**
+     * Set tags.
+     *
+     * @param $tags
+     */
+    public function setTags($tags);
 }

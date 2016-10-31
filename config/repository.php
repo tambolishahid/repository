@@ -30,6 +30,6 @@ return [
     | Repository Cache Tags Enabled or not.
     |
     */
-    'cache_use_tags'  => env('REPOSITORY_CACHE_TAGS', true),
+    'cache_use_tags'  => env('REPOSITORY_CACHE_TAGS', false),
 
 ];
