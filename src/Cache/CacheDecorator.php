@@ -87,13 +87,6 @@ abstract class CacheDecorator implements CacheInterface
      */
     abstract public function repository();
 
-    /**
-     * CacheDecorator constructor.
-     *
-     * @param App        $app
-     * @param Collection $collection
-     * @param bool       $repository
-     */
     public function __construct(App $app, Collection $collection, $repository = false)
     {
         $this->app = $app;
@@ -135,9 +128,9 @@ abstract class CacheDecorator implements CacheInterface
      */
     protected function getConfig()
     {
-        $this->ttl = Config::get('repository_cache.ttl');
-        $this->enabled = Config::get('repository_cache.enabled');
-        if (!Config::get('repository_cache.use_tags')) {
+        $this->ttl = Config::get('repository.cache_ttl');
+        $this->enabled = Config::get('repository.cache_enabled');
+        if (!Config::get('repository.cache_use_tags')) {
             $this->tags = false;
             $this->tag_cleaners = false;
         }
