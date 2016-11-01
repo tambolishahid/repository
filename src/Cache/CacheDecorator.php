@@ -46,13 +46,6 @@ abstract class CacheDecorator implements CacheInterface
     protected $excludes = false;
 
     /**
-     * array of tag cleaners.
-     *
-     * @var array
-     */
-    protected $tag_cleaners = [];
-
-    /**
      * enable cache tag.
      *
      * @var bool
@@ -133,7 +126,6 @@ abstract class CacheDecorator implements CacheInterface
         $this->enabled = Config::get('repository.cache_enabled');
         if (!Config::get('repository.cache_use_tags')) {
             $this->tags = false;
-            $this->tag_cleaners = false;
         }
     }
 
@@ -170,34 +162,7 @@ abstract class CacheDecorator implements CacheInterface
             $res = $this->callMethod($method, $arguments);
         }
 
-        if ($this->doesMethodClearTag($method)) {
-            $this->clearCacheTag();
-        }
-
         return $res;
-    }
-
-    /**
-     * @param $method
-     *
-     * @return bool
-     */
-    protected function doesMethodClearTag($method)
-    {
-        if ($this->tag_cleaners &&
-            in_array($method, $this->tag_cleaners)) {
-            return true;
-        }
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function clearCacheTag()
-    {
-        if ($this->tags) {
-            return Cache::tags($this->tags)->flush();
-        }
     }
 
     /**
