@@ -80,6 +80,14 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     }
 
     /**
+     * Reset Criteria.
+     */
+    public function resetCriteria()
+    {
+        $this->criteria = new Collection();
+    }
+
+    /**
      * @param Criteria $criteria
      *
      * @return $this
