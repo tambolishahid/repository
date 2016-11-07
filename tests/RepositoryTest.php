@@ -95,4 +95,16 @@ class RepositoryTest extends TestCase
         return $this->assertCount(9, $result->toArray());
     }
 
+    /**
+     * Test repository can paginate entities.
+     */
+    public function test_it_can_paginate_entities()
+    {
+        $this->createArticles(100);
+
+        $result = $this->articleRepository->paginate(20);
+
+        return $this->assertInstanceOf('Illuminate\Pagination\LengthAwarePaginator', $result);
+    }
+
 }
