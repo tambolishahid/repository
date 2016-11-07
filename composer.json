@@ -12,17 +12,18 @@
     }
   ],
   "require": {
-    "php": ">=5.5.9",
-    "illuminate/cache": "^5.2",
-    "illuminate/config": "^5.2",
-    "illuminate/support": "^5.2",
-    "illuminate/database": "^5.2",
-    "illuminate/filesystem": "^5.2",
-    "illuminate/console": "^5.2"
+    "php": ">=5.6.4",
+    "illuminate/cache": "~5.2.0|~5.3.0",
+    "illuminate/config": "~5.2.0|~5.3.0",
+    "illuminate/support": "~5.2.0|~5.3.0",
+    "illuminate/database": "~5.2.0|~5.3.0",
+    "illuminate/filesystem": "~5.2.0|~5.3.0",
+    "illuminate/console": "~5.2.0|~5.3.0"
   },
   "require-dev": {
-    "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "^4.8"
+    "phpunit/phpunit": "5.*",
+    "orchestra/testbench": "3.2.x-dev",
+    "orchestra/database": "3.2.x-dev"
   },
   "autoload": {
     "psr-4": {
@@ -39,6 +40,9 @@
     "branch-alias": {
       "dev-master": "0.x-dev"
     }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
   },
   "minimum-stability": "dev",
   "prefer-stable": true
