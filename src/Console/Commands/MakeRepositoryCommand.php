@@ -5,7 +5,7 @@ namespace Fuguevit\Repositories\Console\Commands;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Fuguevit\repository\Console\Commands\Creators\RepositoryCreator;
+use Fuguevit\Repositories\Console\Commands\Creators\RepositoryCreator;
 
 /**
  * Class MakeRepositoryCommand

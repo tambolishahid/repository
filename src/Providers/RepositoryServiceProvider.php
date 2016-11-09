@@ -3,10 +3,10 @@
 namespace Fuguevit\Repositories\Providers;
 
 use Fuguevit\Repositories\Console\Commands\MakeRepositoryCommand;
-use Fuguevit\repository\Console\Commands\Creators\RepositoryCreator;
+use Fuguevit\Repositories\Console\Commands\Creators\RepositoryCreator;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Filesystem\Filesystem;
 
 class RepositoryServiceProvider extends ServiceProvider
 {

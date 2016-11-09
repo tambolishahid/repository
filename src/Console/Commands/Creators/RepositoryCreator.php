@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuguevit\repository\Console\Commands\Creators;
+namespace Fuguevit\Repositories\Console\Commands\Creators;
 
 use Doctrine\Common\Inflector\Inflector;
 use Illuminate\Filesystem\Filesystem;
