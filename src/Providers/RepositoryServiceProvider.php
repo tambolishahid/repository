@@ -34,9 +34,8 @@ class RepositoryServiceProvider extends ServiceProvider
         // Register make criteria command.
         $this->registerMakeCriteriaCommand();
         // Register commands.
-        $this->commands(['command.repository.make']);
-        $this->commands(['command.criteria.make']);
-
+        $this->commands(['command.repository.make', 'command.criteria.make']);
+        
         $config_path = __DIR__.'/../../config/repository.php';
         // Merge config
         $this->mergeConfigFrom($config_path, 'repository');

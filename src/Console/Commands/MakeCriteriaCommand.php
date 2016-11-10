@@ -47,7 +47,7 @@ class MakeCriteriaCommand extends Command
         // Create criteria.
         $this->createCriteria($arguments);
         // Run composer dump-autoload.
-        $this->composer->dumpAutoload();
+        $this->composer->dumpAutoloads();
     }
 
     /**
@@ -68,7 +68,9 @@ class MakeCriteriaCommand extends Command
      */
     protected function getArguments()
     {
-        return ['Criteria', InputArgument::REQUIRED, 'Criteria Name.'];
+        return [
+            ['criteria', InputArgument::REQUIRED, 'Criteria Name.']
+        ];
     }
 
 }
