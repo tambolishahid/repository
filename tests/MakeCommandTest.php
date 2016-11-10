@@ -30,4 +30,20 @@ class MakeCommandTest extends TestCase
         $this->assertFileExists($test_repository);
         app()['FileSystem']->cleanDirectory($test_path);
     }
+
+//    /**
+//     * Test make:criteria command.
+//     */
+//    public function test_it_can_make_create_criteria_command()
+//    {
+//        Artisan::call('make:criteria', [
+//            'criteria'  => 'Test',
+//        ]);
+//
+//        $test_path = __DIR__ . "/../app";
+//        $test_criteria = $test_path . DIRECTORY_SEPARATOR . "Repositories/Criteria/TestCriteria.php";
+//
+//        $this->assertFileExists($test_criteria);
+//        app()['FileSystem']->cleanDirectory($test_path);
+//    }
 }
