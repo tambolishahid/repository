@@ -1,0 +1,25 @@
+<?php
+
+namespace criteria_space;
+
+use Fuguevit\Repositories\Criteria\Criteria;
+use Fuguevit\Repositories\Contracts\RepositoryInterface as Repository;
+
+/**
+ * Class criteria_class
+ * @package criteria_namespace
+ */
+class criteria_class extends Criteria
+{
+    /**
+     * @param model
+     * @param Repository $repository
+     *
+     * @return mixed
+     */
+     public function apply($model, Repository $repository)
+     {
+        // TODO Add specific query function.
+     }
+
+}
