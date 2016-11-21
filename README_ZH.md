@@ -16,6 +16,66 @@ Laravel5 Repository 是对Laravel的仓库模式的实现。
 
 > *注意:* 当前情况下安装该包时，需要确保composer.json文件内有 "minimum-stability": "dev" 这一行。
 
+**概览**
+
+首先，在config/app.php文件下的providers数组中添加如下一行：
+
+> Fuguevit\Repositories\Providers\RepositoryServiceProvider::class
+
+其次，用artisan执行一下命令，将repository.php文件拷贝至项目config目录：
+
+> php artisan vendor:publish --provider="Fuguevit\Repositories\Providers\RepositoryServiceProvider" --tag=config
+
+配置文件结构如下，请依据自身项目配置做适当调整，例如项目命名空间和目录结构。
+
+```
+  'repository_namespace' => 'App\Repositories',
+  'repository_path' 	 => 'app'.DIRECTORY_SEPARATOR.'Repositories',
+  'criteria_namespace'   => 'App\Repositories\Criteria',
+  'criteria_path'        => 'app'.DIRECTORY_SEPARATOR.'Repositories'.DIRECTORY_SEPARATOR.'Criteria',
+  'model_namespace' 	 => 'App',
+  'cache_enabled'   	 => env('REPOSITORY_CACHE', true),
+  'cache_ttl'       	 => env('REPOSITORY_CACHE_TTL', 30),
+  'cache_use_tags'       => env('REPOSITORY_CACHE_TAGS', false),
+```
+
+接下来可以创建第一个Repository Class， 假设原项目中有一个叫做Question的Model类，针对其我们可以执行一下方法：
+
+> php artisan make:repository QuestionsRepository
+
+在配置文件定义的Repository目录下，可以发现QuestionsRepository.php文件已生成。
+
+```
+<?php
+
+namespace App\Repositories;
+
+use Fuguevit\Repositories\Eloquent\Repository;
+
+/**
+ * Class QuestionsRepository
+ * @package App\Repositories
+ */
+class QuestionsRepository extends Repository
+{
+    /**
+     * @return string
+     */
+    public function model()
+    {
+        return 'App\Question';
+    }
+}
+```
+
+**Usage**
+
+**Functions**
+
+**Criteria**
+
+**Cache**
+
 **感谢**
 ----
 本项目是在bosnadev的[Laravel Repository](https://github.com/bosnadev/repository)的启发编写的。
