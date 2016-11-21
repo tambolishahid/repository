@@ -20,10 +20,16 @@ then run `composer update`
 
 **Overview**
 
-First, add **Fuguevit\Repositories\Providers\RepositoryServiceProvider::class** 
+First, add 
+
+> Fuguevit\Repositories\Providers\RepositoryServiceProvider::class
+
 as a line to the service providers array in config/app.php file.
 
-Then, type **php artisan vendor:publish --provider="Fuguevit\Repositories\Providers\RepositoryServiceProvider" --tag=config**
+Then, type 
+
+> php artisan vendor:publish --provider="Fuguevit\Repositories\Providers\RepositoryServiceProvider" --tag=config
+
 to run command to copy config file to your project's config folder.
 
 Replace the parameter in repository.php file with your local configuration, especially when you have specific namespace.
@@ -41,7 +47,7 @@ Replace the parameter in repository.php file with your local configuration, espe
  
 Assume you have a model named Question, you can simply create repository with command: 
 
-*php artisan make:repository QuestionsRepository*. 
+> php artisan make:repository QuestionsRepository
 
 The repository is generated as:
 
