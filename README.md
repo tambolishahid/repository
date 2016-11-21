@@ -20,19 +20,15 @@ then run `composer update`
 
 **Overview**
 
-First, add 
+First, add repository service provider in config/app.php file.
 
 > Fuguevit\Repositories\Providers\RepositoryServiceProvider::class
 
-as a line to the service providers array in config/app.php file.
-
-Then, type 
+Then, copy repository configuration file to config folder.
 
 > php artisan vendor:publish --provider="Fuguevit\Repositories\Providers\RepositoryServiceProvider" --tag=config
 
-to run command to copy config file to your project's config folder.
-
-Replace the parameter in repository.php file with your local configuration, especially when you have specific namespace.
+You need replace the parameter in repository.php file with your local configuration, especially when you have specific namespace.
 
 ```
   'repository_namespace' => 'App\Repositories',
