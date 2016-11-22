@@ -72,6 +72,30 @@ class QuestionsRepository extends Repository
 
 **Usage**
 
+By default, you can find a question by its attribute. For example:
+
+```
+#1 find question by id
+$question = Question::find($id);
+
+#2 find questions by attribute 'category' while equals 'others'
+$questions = Question::where('category', 'others')->get();
+```
+
+When using repository, you can simply do it like below:
+
+```
+#0 init QuestionsRepository object called $question
+
+#1 find question by id
+$result = $question->find($id);
+
+#2 find questions by attribute 'category' while equals 'others'
+$results = $question->findBy('category', 'others');
+```
+
+All CRUD functions are well packaged, in the next section we will see the function list.
+
 **Functions**
 
 **Criteria**
