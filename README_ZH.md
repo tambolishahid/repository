@@ -70,6 +70,30 @@ class QuestionsRepository extends Repository
 
 **Usage**
 
+正常使用Eloquent Model的情况下，使用方式如下：
+
+```
+#1 根据主键查找
+$question = Question::find($id);
+
+#2 根据属性 'category' 的值查找
+$questions = Question::where('category', 'others')->get();
+```
+
+当使用 Repository 时：
+
+```
+#0 初始化 QuestionsRepository 对象 $question（可以交给Laravel的IoC实现）
+
+#1 根据主键查找
+$result = $question->find($id);
+
+#2 根据属性 'category' 的值查找
+$results = $question->findBy('category', 'others');
+```
+
+下一章节描述Repository的所有方法。
+
 **Functions**
 
 **Criteria**
