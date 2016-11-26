@@ -2,7 +2,7 @@
 
 Laravel5 Repository 是对Laravel的仓库模式的实现。
 
-**安装**
+** 1. 安装**
 
 在本地工程目录下面，输入下列命令行：
 
@@ -16,7 +16,7 @@ Laravel5 Repository 是对Laravel的仓库模式的实现。
 
 > *注意:* 当前情况下安装该包时，需要确保composer.json文件内有 "minimum-stability": "dev" 这一行。
 
-**概览**
+** 2. 概览**
 
 首先，在config/app.php文件下的providers数组中添加如下一行：
 
@@ -68,7 +68,7 @@ class QuestionsRepository extends Repository
 }
 ```
 
-**Usage**
+**3. 使用**
 
 正常使用Eloquent Model的情况下，使用方式如下：
 
@@ -94,11 +94,11 @@ $results = $question->findBy('category', 'others');
 
 下一章节描述Repository的所有方法。
 
-**Functions**
+**4. 方法**
 
-**Criteria**
+**5. Criteria**
 
-**Cache**
+**6. Cache**
 
 **感谢**
 ----
