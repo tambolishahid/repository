@@ -96,7 +96,62 @@ $results = $question->findBy('category', 'others');
 
 All CRUD functions are well packaged, in the next section we will see the function list.
 
-** IV. Functions**
+** IV. Methods**
+
+The following methods are available:
+
+** Fuguevit\Repositories\Contracts\RepositoryInterface **
+
+```
+    public function all($columns = ['*']);
+    public function lists($value, $key = null);
+    public function create(array $attributes);
+    public function save(array $attributes);
+    public function update(array $attributes, $id);
+    public function delete($id);
+    public function find($id, $columns = ['*']);
+    public function findBy($field, $value, $columns = ['*']);
+    public function findAllBy($field, $value, $columns = ['*']);
+    public function findAllExcept($field, $value, $columns = ['*']);
+    public function findIn($field, array $values, $columns = ['*']);
+    public function findNotIn($field, array $values, $columns = ['*']);
+    public function findWhere($where, $columns = ['*']);
+    public function paginate($perPage = 1, $columns = ['*']);
+    public function orderBy($field, $direction = 'asc');
+    public function with(array $relations);
+```
+
+** Fuguevit\Repositories\Contracts\CriteriaInterface **
+
+```
+    public function apply($model, Repository $repository);
+```
+
+** Examples **
+
+1. Get all entities
+
+> $this->question->all();
+
+2. Create a new entity
+
+> $this->question->create($fillable);
+
+3. Update an entity
+
+> $this->question->update($attributes, $id);
+
+4. Remove an entity
+
+> $this->question->delete($id);
+
+5. Find an entity default by id
+
+> $this->question->find($id);
+
+6. Find an entity by field
+
+> $this->question->findBy($field, $value);
 
 ** V. Criteria**
 
