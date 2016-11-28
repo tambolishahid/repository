@@ -4,7 +4,7 @@ Implement repository pattern for laravel5 elquent model.
 
 If you are a Chinese user, you can see this documentation. [点击此处](https://github.com/fuguevit/repository/blob/master/README_ZH.md)
 
-** I. Installation **
+**I. Installation**
 
 Run the following command from your terminal:
 
@@ -18,7 +18,7 @@ then run `composer update`
 
 > *note:* should add "minimum-stability": "dev" in composer.json if not.
 
-** II. Overview **
+**II. Overview**
 
 First, add repository service provider in config/app.php file.
 
@@ -70,7 +70,7 @@ class QuestionsRepository extends Repository
 }
 ```
 
-** III. Usage **
+**III. Usage**
 
 By default, you can find a question by its attribute. For example:
 
@@ -96,11 +96,11 @@ $results = $question->findBy('category', 'others');
 
 All CRUD functions are well packaged, in the next section we will see the function list.
 
-** IV. Methods **
+**IV. Methods**
 
 The following methods are available:
 
-** Fuguevit\Repositories\Contracts\RepositoryInterface **
+**Fuguevit\Repositories\Contracts\RepositoryInterface**
 
 ```
     public function all($columns = ['*']);
@@ -121,63 +121,63 @@ The following methods are available:
     public function with(array $relations);
 ```
 
-** Fuguevit\Repositories\Contracts\CriteriaInterface **
+**Fuguevit\Repositories\Contracts\CriteriaInterface**
 
 ```
     public function apply($model, Repository $repository);
 ```
 
-** Examples **
+**Examples**
 
-Get all entities
+- Get all entities
 
 ```
     $this->question->all();
 ```
 
-Create a new entity
+- Create a new entity
 
 ```
     $this->question->create($fillable);
 ```
 
-Update an entity
+- Update an entity
 
 ```
     $this->question->update($attributes, $id);
 ```
 
-Remove an entity
+- Remove an entity
 
 ```
     $this->question->delete($id);
 ```
 
-Find an entity default by id
+- Find an entity default by id
 
 ```
     $this->question->find($id);
 ```
 
-Find an entity by field
+- Find an entity by field
 
 ```
     $this->question->findBy($field, $value);
 ```
 
-Find all entities by field
+- Find all entities by field
 
 ```
     $this->question->findAllBy($field, $value;
 ```
 
-Find all entities in a range
+- Find all entities in a range
 
 ```
     $this->question->findIn($field, $values);
 ```
 
-Find all entities by complicated multiple fields:
+- Find all entities by complicated multiple fields:
 
 ```
     $this->question->findWhere([
@@ -187,10 +187,11 @@ Find all entities by complicated multiple fields:
     ]);
 ```
 
-** V. Criteria**
+**V. Criteria**
 
-** VI. Cache**
+**VI. Cache**
 
-** VII. Credits**
+
+**VII. Credits**
 ----
 This Package is inspired by [bosnadev/repository](https://github.com/bosnadev/repository).
