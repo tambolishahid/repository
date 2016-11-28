@@ -129,55 +129,55 @@ The following methods are available:
 
 ** Examples **
 
-- Get all entities
+Get all entities
 
 ```
     $this->question->all();
 ```
 
-- Create a new entity
+Create a new entity
 
 ```
     $this->question->create($fillable);
 ```
 
-- Update an entity
+Update an entity
 
 ```
     $this->question->update($attributes, $id);
 ```
 
-- Remove an entity
+Remove an entity
 
 ```
     $this->question->delete($id);
 ```
 
-- Find an entity default by id
+Find an entity default by id
 
 ```
     $this->question->find($id);
 ```
 
-- Find an entity by field
+Find an entity by field
 
 ```
     $this->question->findBy($field, $value);
 ```
 
-- Find all entities by field
+Find all entities by field
 
 ```
     $this->question->findAllBy($field, $value;
 ```
 
-- Find all entities in a range
+Find all entities in a range
 
 ```
     $this->question->findIn($field, $values);
 ```
 
-- Find all entities by complicated multiple fields:
+Find all entities by complicated multiple fields:
 
 ```
     $this->question->findWhere([
