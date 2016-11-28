@@ -30,7 +30,7 @@ Then, copy repository configuration file to config folder.
 
 You need replace the parameter in repository.php file with your local configuration, especially when you have specific namespace.
 
-```
+```php
   'repository_namespace' => 'App\Repositories',
   'repository_path' 	 => 'app'.DIRECTORY_SEPARATOR.'Repositories',
   'criteria_namespace'   => 'App\Repositories\Criteria',
@@ -74,23 +74,23 @@ class QuestionsRepository extends Repository
 
 By default, you can find a question by its attribute. For example:
 
-```
-#1 find question by id
+```php
+// find question by id
 $question = Question::find($id);
 
-#2 find questions by attribute 'category' while equals 'others'
+// find questions by attribute 'category' while equals 'others'
 $questions = Question::where('category', 'others')->get();
 ```
 
 When using repository, you can simply do it like below:
 
-```
-#0 init QuestionsRepository object called $question
+```php
+// init QuestionsRepository object called $question
 
-#1 find question by id
+// find question by id
 $result = $question->find($id);
 
-#2 find questions by attribute 'category' while equals 'others'
+// find questions by attribute 'category' while equals 'others'
 $results = $question->findBy('category', 'others');
 ```
 
@@ -102,7 +102,7 @@ The following methods are available:
 
 **Fuguevit\Repositories\Contracts\RepositoryInterface**
 
-```
+```php
     public function all($columns = ['*']);
     public function lists($value, $key = null);
     public function create(array $attributes);
@@ -131,55 +131,55 @@ The following methods are available:
 
 - Get all entities
 
-```
+```php
     $this->question->all();
 ```
 
 - Create a new entity
 
-```
+```php
     $this->question->create($fillable);
 ```
 
 - Update an entity
 
-```
+```php
     $this->question->update($attributes, $id);
 ```
 
 - Remove an entity
 
-```
+```php
     $this->question->delete($id);
 ```
 
 - Find an entity default by id
 
-```
+```php
     $this->question->find($id);
 ```
 
 - Find an entity by field
 
-```
+```php
     $this->question->findBy($field, $value);
 ```
 
 - Find all entities by field
 
-```
+```php
     $this->question->findAllBy($field, $value;
 ```
 
 - Find all entities in a range
 
-```
+```php
     $this->question->findIn($field, $values);
 ```
 
 - Find all entities by complicated multiple fields:
 
-```
+```php
     $this->question->findWhere([
         'user_id' => $userId,
         ['created_at', '>', \Carbon\Carbon::yesterday()],
