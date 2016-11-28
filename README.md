@@ -153,6 +153,22 @@ The following methods are available:
 
 > $this->question->findBy($field, $value);
 
+7. Find all entities by field
+
+> $this->question->findAllBy($field, $value;
+
+8. Find all entities in a range
+
+> $this->question->findIn($field, $values);
+
+9. Find all entities by complicated multiple fields:
+
+> $this->question->findWhere([
+    'user_id' => $userId,
+    ['created_at', '>', \Carbon\Carbon::yesterday()],
+    ['status', 'in', array('active', 'banned')]
+]);
+
 ** V. Criteria**
 
 ** VI. Cache**
