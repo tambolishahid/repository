@@ -131,44 +131,50 @@ The following methods are available:
 
 1. Get all entities
 
-> $this->question->all();
-
+```
+    $this->question->all();
+```
 2. Create a new entity
 
-> $this->question->create($fillable);
-
+```
+    $this->question->create($fillable);
+```
 3. Update an entity
 
-> $this->question->update($attributes, $id);
-
+```
+    $this->question->update($attributes, $id);
+```
 4. Remove an entity
 
-> $this->question->delete($id);
+```
+    $this->question->delete($id);
+```
 
 5. Find an entity default by id
 
-> $this->question->find($id);
-
+```
+    $this->question->find($id);
+```
 6. Find an entity by field
-
-> $this->question->findBy($field, $value);
-
+```
+    $this->question->findBy($field, $value);
+```
 7. Find all entities by field
-
-> $this->question->findAllBy($field, $value;
-
+```
+    $this->question->findAllBy($field, $value;
+```
 8. Find all entities in a range
-
-> $this->question->findIn($field, $values);
-
+```
+    $this->question->findIn($field, $values);
+```
 9. Find all entities by complicated multiple fields:
-
-> $this->question->findWhere([
-    'user_id' => $userId,
-    ['created_at', '>', \Carbon\Carbon::yesterday()],
-    ['status', 'in', array('active', 'banned')]
-]);
-
+```
+    $this->question->findWhere([
+        'user_id' => $userId,
+        ['created_at', '>', \Carbon\Carbon::yesterday()],
+        ['status', 'in', array('active', 'banned')]
+    ]);
+```
 ** V. Criteria**
 
 ** VI. Cache**
