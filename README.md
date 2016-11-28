@@ -129,45 +129,56 @@ The following methods are available:
 
 ** Examples **
 
-1. Get all entities
+- Get all entities
 
 ```
     $this->question->all();
 ```
-2. Create a new entity
+
+- Create a new entity
 
 ```
     $this->question->create($fillable);
 ```
-3. Update an entity
+
+- Update an entity
 
 ```
     $this->question->update($attributes, $id);
 ```
-4. Remove an entity
+
+- Remove an entity
 
 ```
     $this->question->delete($id);
 ```
 
-5. Find an entity default by id
+- Find an entity default by id
 
 ```
     $this->question->find($id);
 ```
-6. Find an entity by field
+
+- Find an entity by field
+
 ```
     $this->question->findBy($field, $value);
 ```
-7. Find all entities by field
+
+- Find all entities by field
+
 ```
     $this->question->findAllBy($field, $value;
 ```
-8. Find all entities in a range
+
+- Find all entities in a range
+
 ```
     $this->question->findIn($field, $values);
 ```
-9. Find all entities by complicated multiple fields:
+
+- Find all entities by complicated multiple fields:
+
 ```
     $this->question->findWhere([
         'user_id' => $userId,
@@ -175,6 +186,7 @@ The following methods are available:
         ['status', 'in', array('active', 'banned')]
     ]);
 ```
+
 ** V. Criteria**
 
 ** VI. Cache**
