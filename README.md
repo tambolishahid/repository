@@ -47,7 +47,7 @@ Assume you have a model named Question, you can simply create repository with co
 
 The repository is generated as:
 
-```
+```php
 <?php
 
 namespace App\Repositories;
