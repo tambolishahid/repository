@@ -1,6 +1,6 @@
 # Laravel5 Repository
 
-Implement repository pattern for laravel5 elquent model.
+Implement repository pattern for laravel5 eloquent model.
 
 If you are a Chinese user, you can see this documentation. [点击此处](https://github.com/fuguevit/repository/blob/master/README_ZH.md)
 
