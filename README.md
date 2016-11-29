@@ -189,7 +189,8 @@ The following methods are available:
 
 ## Criteria
 
-Criteria is a simple way to apply specific condition, or set of conditions to the repository query. Your criteria class MUST extend the abstract ```php 
+Criteria is a simple way to apply specific condition, or set of conditions to the repository query. Your criteria class MUST extend the abstract 
+```php 
 Fuguevit\Repositories\Criteria\Criteria
 ```
 class.
