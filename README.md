@@ -189,6 +189,40 @@ The following methods are available:
 
 ## Criteria
 
+Criteria is a simple way to apply specific condition, or set of conditions to the repository query. Your criteria class MUST extend the abstract ```php 
+Fuguevit\Repositories\Criteria\Criteria
+```
+class.
+
+Here is the example:
+
+```php
+<?php 
+
+namespace App\Repositories\Criteria\Questions;
+
+use Fuguevit\Repositories\Criteria\Criteria;
+use Fuguevit\Repositories\Contracts\RepositoryInterface as Repository;
+
+class MadeByVipUser extends Criteria {
+
+    /**
+     * @param $model
+     * @param RepositoryInterface $repository
+     * @return mixed
+     */
+    public function apply($model, Repository $repository)
+    {
+        $model = $model->whereHas('user', function ($query) {
+            $query->where('role', 'vip');
+        });
+        return $model;
+    }
+}
+```
+
+
+
 ## Cache
 
 
