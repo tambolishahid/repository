@@ -9,13 +9,13 @@ If you are a Chinese user, you can see this documentation. [点击此处](https:
 Run the following command from your terminal:
 
 ```php
-composer require "fuguevit/repository: 0.*"
+composer require "fuguevit/repository: ^1.0.0"
 ```
 
 or add this to require section in  your composer.json file:
 
 ```php
-"fuguevit/repository": "0.*"
+"fuguevit/repository": "^1.0.0"
 ```
 
 then run `composer update`
