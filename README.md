@@ -8,25 +8,33 @@ If you are a Chinese user, you can see this documentation. [点击此处](https:
 
 Run the following command from your terminal:
 
-> composer require "fuguevit/repository: 0.*"
+```php
+composer require "fuguevit/repository: 0.*"
+```
 
 or add this to require section in  your composer.json file:
 
-> "fuguevit/repository": "0.*"
+```php
+"fuguevit/repository": "0.*"
+```
 
 then run `composer update`
 
-> *note:* should add "minimum-stability": "dev" in composer.json if not.
+> **note:** you should add "minimum-stability": "dev" in composer.json if not.
 
 ## Overview
 
 First, add repository service provider in config/app.php file.
 
-> Fuguevit\Repositories\Providers\RepositoryServiceProvider::class
+```php
+Fuguevit\Repositories\Providers\RepositoryServiceProvider::class
+```
 
 Then, copy repository configuration file to config folder.
 
-> php artisan vendor:publish --provider="Fuguevit\Repositories\Providers\RepositoryServiceProvider" --tag=config
+```php
+php artisan vendor:publish --provider="Fuguevit\Repositories\Providers\RepositoryServiceProvider" --tag=config
+```
 
 You need replace the parameter in repository.php file with your local configuration, especially when you have specific namespace.
 
@@ -43,7 +51,9 @@ You need replace the parameter in repository.php file with your local configurat
  
 Assume you have a model named Question, you can simply create repository with command: 
 
-> php artisan make:repository QuestionsRepository
+```php
+php artisan make:repository QuestionsRepository
+```
 
 The repository is generated as:
 
@@ -217,8 +227,6 @@ class MadeByVipUser extends Criteria {
     }
 }
 ```
-
-
 
 ## Cache
 
