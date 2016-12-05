@@ -18,8 +18,6 @@ composer require "fuguevit/repository:^1.0.0"
 
 保存后，执行 `composer update`
 
-> **注意:** 当前情况下安装该包时，需要确保composer.json文件内有 "minimum-stability": "dev" 这一行。
-
 ## 概览
 
 首先，在config/app.php文件下的providers数组中添加如下一行：
