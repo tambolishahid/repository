@@ -20,8 +20,6 @@ or add this to require section in  your composer.json file:
 
 then run `composer update`
 
-> **note:** you should add "minimum-stability": "dev" in composer.json if not.
-
 ## Overview
 
 First, add repository service provider in config/app.php file.
