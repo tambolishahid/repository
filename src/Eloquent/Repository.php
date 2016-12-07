@@ -274,7 +274,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function findWhere($where, $columns = ['*'], $or = false)
+    public function findWhere($where, $perPage = null, $columns = ['*'], $or = false)
     {
         $this->applyCriteria();
         $model = $this->model;
@@ -319,7 +319,12 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
             }
         }
 
-        $collection = $model->get($columns);
+        if (is_null($perPage)) {
+            $collection = $model->get($columns);
+        } else {
+            $collection = $model->paginate($perPage, $columns);
+        }
+        
         $this->resetModel();
 
         return $collection;
