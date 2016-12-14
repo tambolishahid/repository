@@ -234,26 +234,32 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function findAllBy($field, $value, $columns = ['*'])
+    public function findAllBy($field, $value, $perPage = null, $columns = ['*'])
     {
-        return $this->findWhere([$field => $value], $columns);
+        return $this->findWhere([$field => $value], $perPage, $columns);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function findAllExcept($field, $value, $columns = ['*'])
+    public function findAllExcept($field, $value, $perPage = null, $columns = ['*'])
     {
-        return $this->findWhere([$field => [$field, '!=', $value]], $columns);
+        return $this->findWhere([$field => [$field, '!=', $value]], $perPage, $columns);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function findIn($field, array $values, $columns = ['*'])
+    public function findIn($field, array $values, $perPage = null, $columns = ['*'])
     {
         $this->applyCriteria();
-        $collection = $this->model->whereIn($field, $values)->get($columns);
+
+        $model = $this->model->whereIn($field, $values);
+        if ($perPage) {
+            $collection = $model->paginate($perPage, $columns);
+        } else {
+            $collection = $model->get($columns);
+        }
         $this->resetModel();
 
         return $collection;
@@ -262,10 +268,16 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function findNotIn($field, array $values, $columns = ['*'])
+    public function findNotIn($field, array $values, $perPage = null, $columns = ['*'])
     {
         $this->applyCriteria();
-        $collection = $this->model->whereNotIn($field, $values)->get($columns);
+
+        $model = $this->model->whereNotIn($field, $values);
+        if ($perPage) {
+            $collection = $model->paginate($perPage, $columns);
+        } else {
+            $collection = $model->get($columns);
+        }
         $this->resetModel();
 
         return $collection;
@@ -324,7 +336,7 @@ abstract class Repository implements CriteriaInterface, RepositoryInterface
         } else {
             $collection = $model->paginate($perPage, $columns);
         }
-        
+
         $this->resetModel();
 
         return $collection;
