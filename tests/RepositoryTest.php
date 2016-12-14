@@ -39,7 +39,7 @@ class RepositoryTest extends TestCase
             'body'  => 'bar',
         ]);
 
-        return $this->assertInstanceOf('Fuguevit\Repositories\Tests\Models\Article', $article);
+        $this->assertInstanceOf('Fuguevit\Repositories\Tests\Models\Article', $article);
     }
 
     /**
@@ -52,7 +52,7 @@ class RepositoryTest extends TestCase
             'body'  => 'bar',
         ]);
 
-        return $this->assertTrue($result);
+        $this->assertTrue($result);
     }
 
     /**
@@ -67,7 +67,7 @@ class RepositoryTest extends TestCase
 
         $updated = $this->articleRepository->update(['title' => 'bar', 'body'  => 'foo'], $id);
 
-        return $this->assertEquals('bar', $updated->title);
+        $this->assertEquals('bar', $updated->title);
     }
 
     /**
@@ -79,7 +79,7 @@ class RepositoryTest extends TestCase
 
         $result = $this->articleRepository->find(10);
 
-        return $this->assertInstanceOf('Fuguevit\Repositories\Tests\Models\Article', $result);
+        $this->assertInstanceOf('Fuguevit\Repositories\Tests\Models\Article', $result);
     }
 
     /**
@@ -94,7 +94,7 @@ class RepositoryTest extends TestCase
             'id.more_equal_than' => ['id', '>=', '9'],
         ]);
 
-        return $this->assertCount(9, $result->toArray());
+        $this->assertCount(9, $result->toArray());
     }
 
     /**
@@ -106,6 +106,6 @@ class RepositoryTest extends TestCase
 
         $result = $this->articleRepository->paginate(20);
 
-        return $this->assertInstanceOf('Illuminate\Pagination\LengthAwarePaginator', $result);
+        $this->assertInstanceOf('Illuminate\Pagination\LengthAwarePaginator', $result);
     }
 }
