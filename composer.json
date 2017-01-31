@@ -1,14 +1,14 @@
 {
-  "name": "fuguevit/repositories",
+  "name": "reotrix/repositories",
   "type": "library",
   "description": "Repository pattern implementation for Laravel5",
   "license": "MIT",
-  "homepage": "http://www.fuguevit.com",
+  "homepage": "http://www.reotrix.com",
   "keywords": ["repository","laravel"],
   "authors": [
     {
-      "name": "Frank Wang",
-      "email": "wangxuan@188.com"
+      "name": "Shahid Tamboli",
+      "email": "tambolishahid@gmail.com"
     }
   ],
   "require": {
@@ -27,12 +27,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Fuguevit\\Repositories\\": "src/"
+      "Reotrix\\Repositories\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Fuguevit\\Repositories\\Tests\\": "tests/"
+      "Reotrix\\Repositories\\Tests\\": "tests/"
     }
   },
   "extra": {
